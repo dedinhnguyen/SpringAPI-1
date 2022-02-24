@@ -1,24 +1,21 @@
 package com.example.demo.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.exception.ResourceNotFoundExeption;
 import com.example.demo.model.Sinhvien;
 import com.example.demo.repository.SinhvienRepository;
 import com.example.demo.service.SinhvienService;
 
 @Service
 public class SinhvienServiceImpl implements SinhvienService{
-	
+		
+	@Autowired
 	private SinhvienRepository sinhvienrepository;
-	
-	
-	public SinhvienServiceImpl(SinhvienRepository sinhvienrepository) {
-		super();
-		this.sinhvienrepository = sinhvienrepository;
-	}
+		
 
 
 	@Override
@@ -30,15 +27,10 @@ public class SinhvienServiceImpl implements SinhvienService{
 
 	@Override
 	public Sinhvien updateSinhvien(Sinhvien sinhvien,long id) {
-		Optional<Sinhvien> sinhvien1= sinhvienrepository.findById(id);
-		if(sinhvien1.isPresent()) {
-//			sinhvien1
-//			sinhvien1.setEmail(sinhvien.getEmail());
-////			sinhvienrepository.save(sinhvien1);
-			return sinhvien;
-		}else {
-			return null;
-		}
+		Sinhvien exitingSinhvien = sinhvienrepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Lophoc", "Id", id));
+		exitingSinhvien.setName(sinhvien.getName());
+		sinhvienrepository.save(exitingSinhvien);
+		return exitingSinhvien;
 	}
 
 
@@ -51,24 +43,13 @@ public class SinhvienServiceImpl implements SinhvienService{
 
 	@Override
 	public Sinhvien GetSinhvienById(long id) {
-		Optional<Sinhvien> sinhvien = sinhvienrepository.findById(id);
-		if(sinhvien.isPresent()) {
-			return sinhvien.get();
-		}else {
-			return null;
-		}
+		return sinhvienrepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Lophoc","Id", id));
 	}
 
 
 	@Override
 	public void DeleteSinhvienById(long id) {
-		Optional<Sinhvien> sinhvien = sinhvienrepository.findById(id);
-		if(sinhvien.isPresent()) {
-			sinhvienrepository.deleteById(id);
-		}else {
-			System.out.println("Khong the xoa");
-		}
+		sinhvienrepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Sinhvien","Id", id));
+		sinhvienrepository.deleteById(id);
 	}
-	
-
 }
