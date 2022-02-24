@@ -1,10 +1,11 @@
 package com.example.demo.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.exception.ResourceNotFoundExeption;
 import com.example.demo.model.Lophoc;
 import com.example.demo.repository.LophocRepository;
 import com.example.demo.service.LophocService;
@@ -12,12 +13,8 @@ import com.example.demo.service.LophocService;
 @Service
 public class LophocServiceImpl implements LophocService {
 	
+	@Autowired
 	private LophocRepository lophocrepository;
-	
-	public LophocServiceImpl(LophocRepository lophocrepository) {
-		super();
-		this.lophocrepository = lophocrepository;
-	}
 	
 	@Override
 	public Lophoc saveLophoc(Lophoc lophoc) {
@@ -30,26 +27,15 @@ public class LophocServiceImpl implements LophocService {
 
 	@Override
 	public void DeleteLophocById(long id) {
-		// TODO Auto-generated method stub
-		Optional<Lophoc> lophoc = lophocrepository.findById(id);
-		if(lophoc.isPresent()) {
-			lophocrepository.deleteById(id);
-		}else {
-			System.out.println("Khong the xoa lop hoc nay");
-		}
+		lophocrepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Lophoc","Id", id));
+		lophocrepository.deleteById(id);
 	}
-
 	@Override
 	public Lophoc updateLophoc(Lophoc lophoc, long id) {
-//		Optional<Lophoc> lophoc1= lophocrepository.findById(id);
-//		if(lophoc1.isPresent()) {
-//			lophoc1.setName(lophoc.getName());
-//			Lophoc updatelophoc= lophocrepository.save(lophoc1);
-//			return updatelophoc;
-//		}else {
-//			return null;
-//		}
-		return null;
+		Lophoc exitinglophoc = lophocrepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Lophoc", "Id", id));
+		exitinglophoc.setName(lophoc.getName());
+		lophocrepository.save(exitinglophoc);
+		return exitinglophoc;
 	}
 
 	@Override
@@ -60,8 +46,6 @@ public class LophocServiceImpl implements LophocService {
 
 	@Override
 	public Lophoc GetLophocById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return lophocrepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Lophoc","Id", id));
 	}
-
 }
