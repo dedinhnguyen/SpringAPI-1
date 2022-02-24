@@ -9,9 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
 
-@Data
 @Entity
 @Table(name="sinhvien")
 public class Sinhvien {
@@ -26,34 +24,31 @@ public class Sinhvien {
 	@Column(name="email")
 	private String email;
 	
-	
-	
-//	public Sinhvien(int id, String name, String email) {
-//		super();
-//		this.id = id;
-//		this.name = name;
-//		this.email = email;
-//	}
-//	public Long getId() {
-//		return id;
-//	}
-//	public void setId(long id) {
-//		this.id = id;
-//	}
-//	public String getName() {
-//		return name;
-//	}
-//	public void setName(String name) {
-//		this.name = name;
-//	}
-//	public String getEmail() {
-//		return email;
-//	}
-//	public void setEmail(String email) {
-//		this.email = email;
-//	}
-
-	  @ManyToOne
-	  @JoinColumn(name = "lophoc_id", nullable = false)
-	  private Lophoc lophoc;
-}
+		public Long getId() {
+			return id;
+		}
+		public void setId(long id) {
+			this.id = id;
+		}
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public String getEmail() {
+			return email;
+		}
+		public void setEmail(String email) {
+			this.email = email;
+		}
+		  public Lophoc getLophoc() {
+			return lophoc;
+		}
+		public void setLophoc(Lophoc lophoc) {
+			this.lophoc = lophoc;
+		}
+		@ManyToOne
+		  @JoinColumn(name = "lophoc_id", nullable = false)
+		  private Lophoc lophoc;
+	}
