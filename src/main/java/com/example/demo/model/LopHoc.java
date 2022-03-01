@@ -9,37 +9,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
-
 @Data
 @Entity
 @Table(name = "lophoc")
-public class Lophoc {
+public class LopHoc {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-
+	private long id;
 	@Column(name = "name", nullable = false)
-	private String name;
 
-//	public int getId() {
-//		return id;
-//	}
-//
-//	public void setId(int id) {
-//		this.id = id;
-//	}
-//
-//	public String getName() {
-//		return name;
-//	}
-//
-//	public void setName(String name) {
-//		this.name = name;
-//	}
+	@NotEmpty
+	private String name;
 	
 	@OneToMany(mappedBy = "lophoc")
-	  private List<Sinhvien> listSinhVien;
-
+	  private List<SinhVien> listSinhVien;
 }
