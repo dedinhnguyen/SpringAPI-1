@@ -32,16 +32,16 @@ public class LopHocController {
 	}
 	
 	@GetMapping
-	public List<LopHoc> getAllLopHoc(){
+	public List<LopHoc> findAllLopHoc(){
 		return LopHocservice.findAllLopHoc();
 	}
 	@DeleteMapping("{id}")
-	public ResponseEntity<String> DeleteLopHocById(@PathVariable("id") long LopHocId){
+	public ResponseEntity<String> deleteLopHocById(@PathVariable("id") long LopHocId){
 		LopHocservice.deleteLopHocById(LopHocId);
 		return new ResponseEntity<String>("Xoa thanh cong! ", HttpStatus.NO_CONTENT);
 	}
 	@GetMapping("{id}")
-	public ResponseEntity<LopHoc> getLopHocById(@PathVariable("id") long LopHocId){
+	public ResponseEntity<LopHoc> findLopHocById(@PathVariable("id") long LopHocId){
 		return new ResponseEntity<LopHoc>(LopHocservice.findLopHocById(LopHocId), HttpStatus.OK);
 	}
 	@PutMapping("{id}")

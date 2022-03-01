@@ -34,7 +34,7 @@ public class SinhVienController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<SinhVien> saveSinhvien(@RequestBody SinhVien sinhvien){
+	public ResponseEntity<SinhVien> saveSinhVien(@RequestBody SinhVien sinhvien){
 		return new ResponseEntity<SinhVien>(sinhvienservice.saveSinhVien(sinhvien), HttpStatus.CREATED);
 		
 	}
@@ -50,17 +50,17 @@ public class SinhVienController {
     }
 	
 	@GetMapping
-	public List<SinhVien> getAllSinhvien(){
+	public List<SinhVien> findAllSinhvien(){
 		return sinhvienservice.findAllSinhVien();
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<SinhVien> GetSinhvienById(@PathVariable("id") long SinhvienId){
+	public ResponseEntity<SinhVien> findSinhvienById(@PathVariable("id") long SinhvienId){
 		return new ResponseEntity<SinhVien>(sinhvienservice.findSinhVienById(SinhvienId), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("{id}")
-	public ResponseEntity<String> DeleteSinhvienById(@PathVariable("id") long Sinhvienid){
+	public ResponseEntity<String> deleteSinhvienById(@PathVariable("id") long Sinhvienid){
 		sinhvienservice.deleteSinhVienById(Sinhvienid);
 		return new ResponseEntity<String>("Xoa thanh cong! ", HttpStatus.NO_CONTENT);
 	}

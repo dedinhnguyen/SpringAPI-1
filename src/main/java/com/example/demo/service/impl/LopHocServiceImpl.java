@@ -14,38 +14,38 @@ import com.example.demo.service.LopHocService;
 public class LopHocServiceImpl implements LopHocService {
 	
 	@Autowired
-	private LopHocRepository lophocrepository;
+	private LopHocRepository lopHocRepository;
 	
 	@Override
 	public LopHoc saveLopHoc(LopHoc lophoc) {
-		return lophocrepository.save(lophoc);
+		return lopHocRepository.save(lophoc);
 	}
 
 
 	@Override
 	public LopHoc updateLopHoc(LopHoc Class, long id) {
-		LopHoc exitingClass = lophocrepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Class", "Id", id));
+		LopHoc exitingClass = lopHocRepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Class", "Id", id));
 		exitingClass.setName(Class.getName());
-		lophocrepository.save(exitingClass);
+		lopHocRepository.save(exitingClass);
 		return exitingClass;
 	}
 
 	@Override
 	public void deleteLopHocById(long id) {
-		lophocrepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Class","Id", id));
-		lophocrepository.deleteById(id);
+		lopHocRepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Class","Id", id));
+		lopHocRepository.deleteById(id);
 	}
 
 	@Override
 	public List<LopHoc> findAllLopHoc() {
-			return lophocrepository.findAll();
+			return lopHocRepository.findAll();
 	}
 
 
 
 	@Override
 	public LopHoc findLopHocById(long id) {
-		return lophocrepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Class","Id", id));
+		return lopHocRepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Class","Id", id));
 	}
 
 }

@@ -14,40 +14,40 @@ import com.example.demo.service.SinhVienService;
 public class SinhVienServiceImpl implements SinhVienService{
 		
 	@Autowired
-	private SinhVienRepository sinhvienrepository;
+	private SinhVienRepository sinhVienRepository;
 		
 
 
 	@Override
 	public SinhVien saveSinhVien(SinhVien sinhvien){
-		return sinhvienrepository.save(sinhvien);
+		return sinhVienRepository.save(sinhvien);
 	}
 
 
 	@Override
 	public SinhVien updateSinhVien(SinhVien sinhvien,long id) {
-		SinhVien exitingSinhvien = sinhvienrepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Lophoc", "Id", id));
+		SinhVien exitingSinhvien = sinhVienRepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Lophoc", "Id", id));
 		exitingSinhvien.setName(sinhvien.getName());
-		sinhvienrepository.save(exitingSinhvien);
+		sinhVienRepository.save(exitingSinhvien);
 		return exitingSinhvien;
 	}
 
 
 	@Override
 	public List<SinhVien> findAllSinhVien(){
-		return sinhvienrepository.findAll();
+		return sinhVienRepository.findAll();
 	}
 
 
 	@Override
 	public SinhVien findSinhVienById(long id) {
-		return sinhvienrepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Lophoc","Id", id));
+		return sinhVienRepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Lophoc","Id", id));
 	}
 
 
 	@Override
 	public void deleteSinhVienById(long id) {
-		sinhvienrepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Sinhvien","Id", id));
-		sinhvienrepository.deleteById(id);
+		sinhVienRepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("Sinhvien","Id", id));
+		sinhVienRepository.deleteById(id);
 	}
 }
