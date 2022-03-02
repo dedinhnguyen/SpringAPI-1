@@ -1,7 +1,9 @@
+
 package com.example.demo.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,12 +21,8 @@ import com.example.demo.service.LopHocService;
 @RestController
 @RequestMapping("/api/lophoc")
 public class LopHocController {
+	@Autowired
 	private LopHocService LopHocservice;
-
-	public LopHocController(LopHocService LopHocservice) {
-		super();
-		this.LopHocservice = LopHocservice;
-	}
 	
 	@PostMapping
 	public ResponseEntity<LopHoc> saveLopHoc(@RequestBody LopHoc LopHoc){

@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 //import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,38 +18,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dto.SinhVienDTO;
 import com.example.demo.model.SinhVien;
 import com.example.demo.service.SinhVienService;
-//import com.example.demo.dto.SinhVienDTO;
+
 
 @RestController
 @RequestMapping("/api/sinhvien")
 public class SinhVienController {
 	
-//	private ModelMapper modelMapper;
+	@Autowired
 	private SinhVienService sinhvienservice;
-
-	public SinhVienController(SinhVienService sinhvienservice) {
-		super();
-		this.sinhvienservice = sinhvienservice;
-	}
 	
 	@PostMapping
-	public ResponseEntity<SinhVien> saveSinhVien(@RequestBody SinhVien sinhvien){
+	public ResponseEntity<SinhVien> saveSinhVien(@RequestBody @Valid SinhVien sinhvien){
 		return new ResponseEntity<SinhVien>(sinhvienservice.saveSinhVien(sinhvien), HttpStatus.CREATED);
-		
 	}
-	@GetMapping(value = "/list")
-    public List<SinhVienDTO> getUserList(){
-        List<SinhVien> sinhviens = sinhvienservice.findAllSinhVien();
-        List<SinhVienDTO> dtoList = new ArrayList<>();
-        for (SinhVien sinhvien : sinhviens){
-            dtoList.add(new SinhVienDTO(sinhvien));
-        }
-        
-        return dtoList;
-    }
 	
 	@GetMapping
 	public List<SinhVien> findAllSinhvien(){
@@ -73,5 +58,6 @@ public class SinhVienController {
 	public ResponseEntity<SinhVien> updateSinhVien(@PathVariable("id") long sinhvienid, @RequestBody SinhVien sinhvien){
 		return new ResponseEntity<SinhVien>(sinhvienservice.updateSinhVien(sinhvien,sinhvienid), HttpStatus.OK);
 	}
+	
 }
 

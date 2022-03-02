@@ -17,7 +17,7 @@ import lombok.Data;
 @Table(name = "lophoc")
 public class LopHoc {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@Column(name = "name", nullable = false)
 

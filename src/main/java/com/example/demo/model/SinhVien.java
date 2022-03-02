@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -20,18 +19,13 @@ import lombok.Data;
 public class SinhVien {
 	
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private long id;
 	
 	@Column(name="name", nullable = false)
 	@NotEmpty
 	@Size(min = 2, message = "user name should have at least 2 characters")
 	private String name;
-	
-	@Column(name="email")
-	@NotEmpty
-	@Email
-	private String email;
 	
 	@ManyToOne
 	@JoinColumn(name = "lophoc_id", nullable = false)
