@@ -33,15 +33,18 @@ public class LopHocController {
 	public List<LopHoc> findAllLopHoc(){
 		return LopHocservice.findAllLopHoc();
 	}
+	
 	@DeleteMapping("{id}")
 	public ResponseEntity<String> deleteLopHocById(@PathVariable("id") long LopHocId){
 		LopHocservice.deleteLopHocById(LopHocId);
 		return new ResponseEntity<String>("Xoa thanh cong! ", HttpStatus.NO_CONTENT);
 	}
+	
 	@GetMapping("{id}")
 	public ResponseEntity<LopHoc> findLopHocById(@PathVariable("id") long LopHocId){
 		return new ResponseEntity<LopHoc>(LopHocservice.findLopHocById(LopHocId), HttpStatus.OK);
 	}
+	
 	@PutMapping("{id}")
 	public ResponseEntity<LopHoc> updateLopHocById(@PathVariable("id") long LopHocId, @RequestBody LopHoc lophoc){
 		return new ResponseEntity<LopHoc>(LopHocservice.updateLopHoc(lophoc,LopHocId), HttpStatus.OK);
