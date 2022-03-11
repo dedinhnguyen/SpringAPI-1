@@ -24,7 +24,7 @@ public class LopHocServiceImpl implements LopHocService {
 	@Override
 	public LopHoc saveLopHoc(LopHoc lophoc) {
 		return lopHocRepository.save(lophoc);
-	}
+	} 
 
 	@Override
 	public LopHoc updateLopHoc(LopHoc Class, long id) {
@@ -56,5 +56,4 @@ public class LopHocServiceImpl implements LopHocService {
 		return lophoc;
 		
 	}
-
 }

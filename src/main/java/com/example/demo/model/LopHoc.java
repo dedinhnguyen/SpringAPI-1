@@ -22,7 +22,7 @@ public class LopHoc {
 	@Column(name = "name", nullable = false)
 
 	@NotEmpty
-	private String name;
+	private String name; 
 	
 	@OneToMany(mappedBy = "lophoc")
 	  private List<SinhVien> listSinhVien;

@@ -2,9 +2,6 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
 import com.example.demo.dto.LopHocDTO;
 import com.example.demo.model.LopHoc;
 public interface LopHocService {

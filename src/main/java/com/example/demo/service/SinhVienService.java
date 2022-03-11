@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.dto.SinhVienDTO;
+import com.example.demo.dto.SinhVienDTO; 
 import com.example.demo.model.SinhVien;
 public interface SinhVienService {
 	SinhVien saveSinhVien(SinhVien sinhvien);
