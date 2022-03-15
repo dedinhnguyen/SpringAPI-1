@@ -26,7 +26,7 @@ public class SinhVienServiceImpl implements SinhVienService{
 	public SinhVien saveSinhVien(SinhVien sinhvien){
 		return sinhVienRepository.save(sinhvien);
 	}
-
+	
 	@Override
 	public SinhVien updateSinhVien(SinhVien sinhvien,long id) {
 		SinhVien exitingSinhvien = sinhVienRepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("SinhVien", "Id", id));

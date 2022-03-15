@@ -39,7 +39,7 @@ public class LopHocServiceImpl implements LopHocService {
 		lopHocRepository.findById(id).orElseThrow(()-> new ResourceNotFoundExeption("LopHoc","Id", id));
 		lopHocRepository.deleteById(id);
 	}
-
+	
 	@Override
 	public List<LopHoc> findAllLopHoc() {
 			return lopHocRepository.findAll();
